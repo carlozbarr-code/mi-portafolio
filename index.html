@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carlos Barrientos - CV Interactivo</title>
+    <title>Carlos Barrientos</title>
     <!-- Tailwind CSS para diseño rápido -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Iconos -->
@@ -59,7 +59,6 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-shrink-0 flex items-center">
-                    <!-- CAMBIO: "CB." a "Carlos Barrientos" -->
                     <span class="font-bold text-xl text-primary tracking-tight">Carlos Barrientos</span>
                 </div>
                 <div class="hidden md:flex space-x-8">
@@ -104,7 +103,6 @@
             <div class="lg:w-1/2 mt-12 lg:mt-0 flex justify-center lg:justify-end">
                 <div class="relative w-64 h-64 md:w-80 md:h-80 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-full p-1 shadow-2xl animate-fade-in-up">
                     <div class="w-full h-full bg-slate-100 rounded-full flex items-center justify-center overflow-hidden relative border-4 border-white shadow-inner">
-                        <!-- IMAGEN REAL: Se ajusta automáticamente al círculo -->
                         <img src="Carlos.jpg" alt="Carlos Barrientos" class="w-full h-full object-cover">
                     </div>
                     <!-- Badges flotantes -->
@@ -121,14 +119,13 @@
         </div>
     </header>
 
-    <!-- Sección Perfil (Resumido) -->
+    <!-- Sección Perfil -->
     <section id="perfil" class="py-20 bg-slate-50 fade-in-section">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-slate-100">
                 <h2 class="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
                     <i class="fas fa-user-circle text-primary"></i> Perfil Profesional
                 </h2>
-                <!-- RESUMEN CORTO -->
                 <p class="text-lg text-slate-600 leading-relaxed">
                     Gerente de Proyectos y Mejora Continua (PMO) experto en alinear estrategia corporativa y ejecución operativa. Perfil híbrido que combina <strong>gestión de procesos (BPM)</strong>, metodologías ágiles y <strong>transformación digital</strong> (Python/Power BI) para maximizar la rentabilidad en entornos corporativos de alta exigencia.
                 </p>
@@ -264,7 +261,8 @@
                         <span class="skill-tag px-3 py-1 bg-slate-800 rounded border border-slate-700 text-sm transition-all cursor-default">Jira</span>
                         <span class="skill-tag px-3 py-1 bg-slate-800 rounded border border-slate-700 text-sm transition-all cursor-default">Confluence</span>
                         <span class="skill-tag px-3 py-1 bg-slate-800 rounded border border-slate-700 text-sm transition-all cursor-default">Odoo ERP</span>
-                        <span class="skill-tag px-3 py-1 bg-slate-800 rounded border border-slate-700 text-sm transition-all cursor-default">Excel VBA</span>
+                        <!-- EXCEL AGREGADO AQUÍ -->
+                        <span class="skill-tag px-3 py-1 bg-slate-800 rounded border border-slate-700 text-sm transition-all cursor-default">Excel Avanzado (VBA)</span>
                     </div>
                 </div>
 
@@ -321,7 +319,7 @@
                         </div>
                         <div class="bg-slate-700 text-slate-200 p-3 rounded-2xl rounded-tl-none text-sm">
                             ¡Hola! Soy el asistente virtual de Carlos. Estoy entrenado para responder preguntas sobre su perfil profesional. <br><br>
-                            Intenta preguntar: <em>"¿Qué experiencia tienes?"</em> o <em>"¿Sabes Python?"</em>
+                            Intenta preguntar: <em>"¿Qué experiencia tienes?"</em>, <em>"¿Cuál es tu nivel de inglés?"</em> o <em>"Do you speak English?"</em>
                         </div>
                     </div>
                 </div>
@@ -351,6 +349,10 @@
                 </a>
                 <a href="https://wa.me/526672005343" target="_blank" class="inline-flex items-center justify-center px-8 py-3 border border-green-500 text-green-600 bg-white hover:bg-green-50 rounded-md text-base font-medium md:py-4 md:text-lg md:px-10 shadow-lg hover:shadow-xl transition-all">
                     <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                </a>
+                <!-- BOTÓN CALENDLY (Recuerda cambiar el link por el tuyo) -->
+                <a href="https://calendly.com/carlosbarrientosf/30min" target="_blank" class="inline-flex items-center justify-center px-8 py-3 border border-blue-500 text-blue-600 bg-white hover:bg-blue-50 rounded-md text-base font-medium md:py-4 md:text-lg md:px-10 shadow-lg hover:shadow-xl transition-all">
+                    <i class="fas fa-calendar-check mr-2"></i> Agendar Entrevista
                 </a>
             </div>
             
@@ -399,19 +401,45 @@
             // 2. Simular "Escribiendo..."
             setTimeout(() => {
                 let response = "";
+                const msg = message; // alias corto
 
-                // Cerebro simple del Chatbot (Lógica de palabras clave)
-                if (message.includes("experiencia") || message.includes("trabajo") || message.includes("trayectoria")) {
+                // --- LÓGICA BILINGÜE Y MEJORADA ---
+
+                // INGLÉS
+                if (msg.includes("experience") || msg.includes("work") || msg.includes("background") || msg.includes("resume")) {
+                    response = "I have over 7 years of combined experience as a PMO Manager at AKHA, Process Architect at SuKarne, and Project Manager at DITEC. My focus is on profitability and automation.";
+                } else if (msg.includes("salary") || msg.includes("rate") || msg.includes("expectations")) {
+                    response = "My target net salary range is $45,000 - $50,000 MXN, negotiable based on benefits and the project challenge.";
+                } else if (msg.includes("english") || msg.includes("level") || msg.includes("speak")) {
+                    response = "I have a Professional English level (Intermediate-Advanced). I hold a Higher National Diploma (HND) in English & Culture from Michigan State University.";
+                } else if (msg.includes("tools") || msg.includes("stack") || msg.includes("tech") || msg.includes("software")) {
+                    response = "I master management tools like Jira, Confluence, and Odoo. On the technical side, I use Python (Pandas), Power BI, SQL, Excel (Advanced/VBA) and modeling tools like ARIS/Bizagi.";
+                } else if (msg.includes("contact") || msg.includes("email") || msg.includes("call")) {
+                    response = "You can reach me at: carlozbarr@gmail.com or WhatsApp at +52 667 200 5343. I am available!";
+                } else if (msg.includes("meeting") || msg.includes("schedule") || msg.includes("appointment")) {
+                    response = "You can schedule a meeting with me directly via Calendly. Please use the 'Agendar Entrevista' button below.";
+                } else if (msg.includes("hello") || msg.includes("hi")) {
+                    response = "Hello! I am Carlos's AI assistant. Ask me anything about his professional profile.";
+                } 
+                
+                // ESPAÑOL
+                else if (msg.includes("experiencia") || msg.includes("trabajo") || msg.includes("trayectoria")) {
                     response = "Tengo más de 7 años de experiencia combinada. He sido Gerente PMO en AKHA, Arquitecto de Procesos en SuKarne y Project Manager en DITEC (Seguridad). Mi especialidad es la rentabilidad y la automatización.";
-                } else if (message.includes("sueldo") || message.includes("salario") || message.includes("expectativa")) {
+                } else if (msg.includes("sueldo") || msg.includes("salario") || msg.includes("expectativa")) {
                     response = "Mi rango salarial objetivo es de $45,000 a $50,000 MXN netos, negociable según prestaciones y el reto del proyecto.";
-                } else if (message.includes("tecnología") || message.includes("python") || message.includes("herramientas") || message.includes("stack")) {
-                    response = "Soy experto en Python para automatización de datos, Power BI para visualización y Jira/Azure DevOps para gestión ágil. Un perfil híbrido técnico-gerencial.";
-                } else if (message.includes("contacto") || message.includes("llamar") || message.includes("correo")) {
+                } else if (msg.includes("inglés") || msg.includes("ingles") || msg.includes("idioma")) {
+                    response = "Cuento con un nivel de Inglés Profesional (Intermedio-Avanzado). Tengo un Higher National Diploma (HND) en Inglés y Cultura por la Michigan State University.";
+                } else if (msg.includes("herramientas") || msg.includes("tools") || msg.includes("software") || msg.includes("stack") || msg.includes("tecnología") || msg.includes("habilidades") || msg.includes("técnicas") || msg.includes("skills")) {
+                    response = "Domino herramientas de gestión como Jira, Confluence y Odoo. En la parte técnica soy Experto en Excel (VBA/Macros), uso Python (Pandas) para automatización, Power BI y SQL.";
+                } else if (msg.includes("contacto") || msg.includes("llamar") || msg.includes("correo")) {
                     response = "Puedes contactarme al correo: carlozbarr@gmail.com o enviarme un WhatsApp al 667 200 5343. ¡Estoy disponible!";
-                } else if (message.includes("scrum") || message.includes("agile") || message.includes("ágil")) {
+                } else if (msg.includes("scrum") || msg.includes("agile") || msg.includes("ágil")) {
                     response = "Domino Scrum y Kanban. He liderado transformaciones ágiles y conozco SAFe para escalar la agilidad en grandes corporativos.";
-                } else if (message.includes("hola") || message.includes("buenos días")) {
+                } else if (msg.includes("excel") || msg.includes("macros")) {
+                    response = "Tengo nivel Experto en Excel. Desarrollo macros complejas con VBA, tablas dinámicas avanzadas y automatización de reportes financieros.";
+                } else if (msg.includes("cita") || msg.includes("reunión") || msg.includes("agendar") || msg.includes("entrevista")) {
+                    response = "¡Claro! Puedes ver mi disponibilidad y agendar una reunión directamente en mi Calendly usando el botón 'Agendar Entrevista' de abajo.";
+                } else if (msg.includes("hola") || msg.includes("buenos días")) {
                     response = "¡Hola! Soy la IA de Carlos. Pregúntame lo que quieras sobre mi perfil profesional.";
                 } else {
                     response = "Interesante pregunta. Mi enfoque principal es resolver problemas complejos mediante procesos y tecnología. ¿Te gustaría saber sobre mi experiencia o mis habilidades técnicas?";
