@@ -161,29 +161,28 @@
             </div>
 
             <!-- Full Menu (Desktop) -->
-            <div class="hidden lg:flex items-center gap-8 text-[11px] font-extrabold uppercase tracking-[0.2em] text-slate-400">
+            <div class="hidden xl:flex items-center gap-8 text-[11px] font-extrabold uppercase tracking-[0.2em] text-slate-400">
                 <a href="#experiencia" class="nav-link hover:text-white">Experiencia</a>
                 <a href="#stack" class="nav-link hover:text-white">Stack</a>
                 <a href="#formacion" class="nav-link hover:text-white">Formación</a>
             </div>
 
             <!-- Actions -->
-            <div class="flex items-center gap-3 sm:gap-4">
+            <div class="flex items-center gap-2 sm:gap-4">
                 <a href="#ia" class="ia-shortcut shadow-lg group">
                     <div class="w-6 h-6 gradient-bg rounded-lg flex items-center justify-center ai-pulse">
                         <i class="fas fa-wand-magic-sparkles text-[12px] text-white"></i>
                     </div>
-                    <span class="text-[11px] uppercase tracking-widest hidden xs:inline">Consultar IA</span>
+                    <span class="text-[11px] uppercase tracking-widest hidden sm:inline">IA</span>
+                </a>
+
+                <!-- Botón de Llamada (Centralizado en Nav) -->
+                <a href="tel:+526672005343" class="px-5 py-2.5 bg-white/5 border border-white/10 hover:border-indigo-500 hover:text-white text-slate-300 rounded-xl font-bold transition-all text-xs flex items-center gap-2 shadow-xl">
+                    <i class="fas fa-phone-alt"></i> <span>Llamar</span>
                 </a>
                 
-                <a href="https://calendly.com/carlosbarrientosf/30min" target="_blank" class="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-500 transition-all text-xs flex items-center gap-2 shadow-lg shadow-indigo-500/20">
-                    <i class="fas fa-calendar-check hidden xs:inline"></i> Agenda
-                </a>
-                
-                <div class="h-6 w-[1px] bg-white/10 mx-1 hidden sm:block"></div>
-                
-                <a href="https://wa.me/526672005343" target="_blank" class="hover:text-green-400 transition-colors text-xl hidden xs:block">
-                    <i class="fab fa-whatsapp"></i>
+                <a href="https://calendly.com/carlosbarrientosf/30min" target="_blank" class="px-5 py-2.5 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-500 transition-all text-xs flex items-center gap-2 shadow-lg shadow-indigo-500/20">
+                    <i class="fas fa-calendar-alt hidden xs:inline"></i> Agenda
                 </a>
             </div>
         </div>
@@ -385,7 +384,7 @@
                 </div>
             </div>
 
-            <!-- BLOQUE RESTAURADO: Habilidades de Alto Valor Estratégico -->
+            <!-- BLOQUE: Habilidades de Alto Valor Estratégico -->
             <div class="mt-16 bg-white/5 border border-white/10 rounded-[3rem] p-10 md:p-14 shadow-inner text-balance">
                 <h3 class="text-2xl font-bold text-white mb-8 flex items-center gap-3 leading-tight">🧠 Habilidades de Alto Valor Estratégico</h3>
                 <div class="grid md:grid-cols-2 gap-10 text-sm leading-relaxed">
@@ -486,9 +485,6 @@
             <a href="mailto:carlozbarr@gmail.com" class="hover:text-primary transition-colors"><i class="fas fa-envelope"></i></a>
             <a href="https://wa.me/526672005343" target="_blank" class="hover:text-green-500 transition-colors"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <div class="w-12 h-12 mx-auto mb-4 rounded-xl profile-placeholder text-xs border border-white/10 opacity-50">
-            CB
-        </div>
         <p class="text-slate-600 font-bold text-[10px] uppercase tracking-[0.4em]">&copy; 2026 Carlos Barrientos • Strategy & Execution</p>
     </footer>
 
@@ -513,20 +509,28 @@
 
             setTimeout(() => {
                 let resp = "";
-                if (msg.includes("scrum") || msg.includes("master") || msg.includes("agile") || msg.includes("certificado")) {
+                
+                // Lógica de respuesta mejorada basada en el C.V.
+                if (msg.includes("akha") || (msg.includes("grupo") && msg.includes("akha"))) {
+                    resp = "En **Grupo AKHA** (Culiacán, actual), Carlos es **Gerente de PMO**. Sus logros clave incluyen: <br>• Ser miembro del **Comité Estratégico (Mastermind)** definiendo el rumbo comercial.<br>• Liderar la **Consultoría de Negocios y Franquicias**, estandarizando modelos para replicabilidad externa.<br>• Impulsar la **Transformación Digital** con Python y Odoo, reduciendo la carga administrativa en un **40%**.<br>• Supervisar transversalmente la cartera de proyectos para asegurar calidad y ROI.";
+                } else if (msg.includes("sukarne")) {
+                    resp = "Como **Arquitecto de Procesos Sr. en SuKarne** (2022-2024), Carlos logró:<br>• Incrementar la **productividad operativa** en las divisiones de Abasto de Ganado y Pieles.<br>• Estandarizar procesos críticos de logística y manufactura usando **ARIS y Bizagi**.<br>• Liderar la alineación entre Planta y TI para integraciones de **ERP**, garantizando continuidad del negocio.<br>• Establecer controles de gobierno para asegurar el cumplimiento normativo y auditorías.";
+                } else if (msg.includes("ditec")) {
+                    resp = "En **DITEC Solutions** (CDMX, 2017-2022), Carlos se desempeñó como **Project Manager**:<br>• Responsable de la modernización tecnológica de sitios de alta seguridad como el **Penal de Aguaruto** y centros **C4**.<br>• Gestionó presupuestos de alto valor y relaciones con proveedores estratégicos sin desviaciones financieras.<br>• Ejecutó migraciones críticas de videovigilancia con **zero downtime**, manteniendo la seguridad operativa en todo momento.";
+                } else if (msg.includes("experience") || msg.includes("trabajo") || msg.includes("experiencia") || msg.includes("trayectoria") || msg.includes("logros")) {
+                    resp = "Carlos tiene 7+ años de experiencia estratégica. Actualmente es Gerente de PMO en **Grupo AKHA** (Estrategia y Franquicias), fue Arquitecto Sr. en **SuKarne** (Productividad y BPM) y Project Manager en **DITEC Solutions** (Infraestructura crítica y Seguridad). ¿Te gustaría profundizar en alguna de estas empresas?";
+                } else if (msg.includes("scrum") || msg.includes("master") || msg.includes("agile") || msg.includes("certificado")) {
                     resp = "Sí, Carlos cuenta con una certificación profesional en **Scrum Master** vía Coursera. Domina el escalado Agile para maximizar la entrega de valor al negocio. <a href='https://www.coursera.org/account/accomplishments/specialization/NA33RME0O160' target='_blank' class='text-secondary font-bold underline'>Validar aquí</a>.";
-                } else if (msg.includes("experience") || msg.includes("trabajo") || msg.includes("experiencia") || msg.includes("trayectoria") || msg.includes("akha")) {
-                    resp = "Carlos suma 7+ años de trayectoria. Actualmente es **Gerente de PMO en Grupo AKHA**, donde lidera el Comité Mastermind y redujo la carga administrativa en un 40% mediante automatización.";
                 } else if (msg.includes("stack") || msg.includes("herramientas") || msg.includes("python") || msg.includes("bi")) {
-                    resp = "Su stack está diseñado para el valor: utiliza **Jira** para gestión, **Python** para automatización de tareas y **Power BI/Looker** para dashboards directivos.";
+                    resp = "Su stack está diseñado para el valor: utiliza **Jira** para gestión, **Python** (Pandas/Automatización), **SQL** para análisis de datos, y **Power BI/Looker** para dashboards directivos. También es experto en **ARIS y Bizagi** para BPM.";
                 } else if (msg.includes("skills") || msg.includes("habilidades") || msg.includes("valor")) {
-                    resp = "Carlos ofrece habilidades de alto valor: Gestión de PMO (Accountability), Estrategia Corporativa alineada a ROI y Reingeniería de Procesos (BPM).";
-                } else if (msg.includes("formacion") || msg.includes("maestria")) {
-                    resp = "Es **Maestro en Dirección de Proyectos por la UNITEC** y Licenciado en Administración. También posee un HND de Michigan State University.";
-                } else if (msg.includes("contacto") || msg.includes("email") || msg.includes("whatsapp")) {
-                    resp = "Puedes contactar a Carlos vía WhatsApp al **+52 667 200 5343** o al correo **carlozbarr@gmail.com**.";
+                    resp = "Carlos ofrece habilidades de alto valor: **Gestión de PMO (Accountability)**, Estrategia Corporativa alineada a ROI, **Reingeniería de Procesos (BPM)** y Consultoría de Franquicias.";
+                } else if (msg.includes("formacion") || msg.includes("maestria") || msg.includes("educacion")) {
+                    resp = "Es **Maestro en Dirección de Proyectos por la UNITEC** (2018-2019) y Licenciado en Administración. Además, posee un **Higher National Diploma** internacional por Michigan State University, lo que avala su visión global.";
+                } else if (msg.includes("contacto") || msg.includes("email") || msg.includes("whatsapp") || msg.includes("llamar")) {
+                    resp = "Puedes contactar a Carlos vía WhatsApp o Llamada al **+52 667 200 5343**, o al correo **carlozbarr@gmail.com**. También puedes agendar directamente en su Calendly usando el botón 'Agenda' arriba.";
                 } else {
-                    resp = "Carlos Barrientos destaca por ser un perfil híbrido (PMO Estratégico + Automatización técnica). ¿Deseas saber más sobre su impacto en rentabilidad?";
+                    resp = "Carlos Barrientos destaca por ser un perfil híbrido excepcional (PMO Estratégico + Automatización técnica). ¿Deseas saber más sobre su impacto en **Grupo AKHA**, **SuKarne** o **DITEC**?";
                 }
 
                 chatWindow.innerHTML += `
