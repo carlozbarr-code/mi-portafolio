@@ -60,11 +60,9 @@
         .ia-shortcut {
             background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
             color: #020617;
-            padding: 0.5rem 1rem;
             border-radius: 14px;
             display: flex;
             align-items: center;
-            gap: 10px;
             font-weight: 800;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -142,21 +140,41 @@
             font-weight: 800;
             color: white;
         }
+        
+        .dot-pulse {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 0;
+        }
+        .dot-pulse span {
+            width: 8px;
+            height: 8px;
+            background: #6366f1;
+            border-radius: 50%;
+            animation: dot-pulse-anim 1.4s infinite ease-in-out both;
+        }
+        .dot-pulse span:nth-child(1) { animation-delay: -0.32s; }
+        .dot-pulse span:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes dot-pulse-anim {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
     </style>
 </head>
 <body class="text-slate-300 font-sans antialiased">
 
     <!-- Nav -->
     <nav class="fixed w-full z-50 px-4 py-6 md:px-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center glass-nav rounded-2xl px-5 py-3 shadow-2xl">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass-nav rounded-2xl px-3 sm:px-5 py-3 shadow-2xl">
             <!-- Brand -->
-            <div class="flex items-center gap-3 shrink-0">
-                <div class="w-10 h-10 rounded-xl overflow-hidden border border-white/20 shadow-lg profile-placeholder text-sm">
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden border border-white/20 shadow-lg profile-placeholder text-sm">
                     <img src="Carlos.jpg" alt="CB" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='CB'">
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-heading font-bold text-white tracking-tighter text-base leading-none">Carlos Barrientos</span>
-                    <span class="text-[10px] text-indigo-400 font-bold uppercase tracking-widest mt-1">PMO & Strategy</span>
+                    <span class="font-heading font-bold text-white tracking-tighter text-sm sm:text-base leading-none">Carlos Barrientos</span>
+                    <span class="text-[9px] sm:text-[10px] text-indigo-400 font-bold uppercase tracking-widest mt-1">PMO & Strategy</span>
                 </div>
             </div>
 
@@ -169,20 +187,21 @@
 
             <!-- Actions -->
             <div class="flex items-center gap-2 sm:gap-4">
-                <a href="#ia" class="ia-shortcut shadow-lg group">
+                <a href="#ia" class="ia-shortcut shadow-lg group p-2 sm:px-4 sm:py-2" title="Consultar IA">
                     <div class="w-6 h-6 gradient-bg rounded-lg flex items-center justify-center ai-pulse">
                         <i class="fas fa-wand-magic-sparkles text-[12px] text-white"></i>
                     </div>
-                    <span class="text-[11px] uppercase tracking-widest hidden sm:inline">IA</span>
+                    <span class="text-[11px] uppercase tracking-widest hidden md:inline ml-2">IA</span>
                 </a>
 
-                <!-- Botón de Llamada (Centralizado en Nav) -->
-                <a href="tel:+526672005343" class="px-5 py-2.5 bg-white/5 border border-white/10 hover:border-indigo-500 hover:text-white text-slate-300 rounded-xl font-bold transition-all text-xs flex items-center gap-2 shadow-xl">
-                    <i class="fas fa-phone-alt"></i> <span>Llamar</span>
+                <!-- Botón de Llamada (Solo icono en móvil) -->
+                <a href="tel:+526672005343" class="p-2.5 sm:px-4 sm:py-2.5 bg-white/5 border border-white/10 hover:border-indigo-500 hover:text-white text-slate-300 rounded-xl font-bold transition-all text-xs flex items-center gap-2 shadow-xl" title="Llamar">
+                    <i class="fas fa-phone-alt"></i> <span class="hidden md:inline">Llamar</span>
                 </a>
                 
-                <a href="https://calendly.com/carlosbarrientosf/30min" target="_blank" class="px-5 py-2.5 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-500 transition-all text-xs flex items-center gap-2 shadow-lg shadow-indigo-500/20">
-                    <i class="fas fa-calendar-alt hidden xs:inline"></i> Agenda
+                <!-- Botón de Agenda (Solo icono en móvil) -->
+                <a href="https://calendly.com/carlosbarrientosf/30min" target="_blank" class="p-2.5 sm:px-4 sm:py-2.5 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-500 transition-all text-xs flex items-center gap-2 shadow-lg shadow-indigo-500/20" title="Agenda">
+                    <i class="fas fa-calendar-alt"></i> <span class="hidden md:inline">Agenda</span>
                 </a>
             </div>
         </div>
@@ -489,12 +508,13 @@
     </footer>
 
     <script>
-        function sendMessage() {
+        async function sendMessage() {
             const input = document.getElementById('chat-input');
             const chatWindow = document.getElementById('chat-window');
             const text = input.value.trim();
             if(!text) return;
 
+            // Mostrar mensaje del usuario
             chatWindow.innerHTML += `
                 <div class="flex justify-end mb-4">
                     <div class="bg-slate-700 text-white p-4 rounded-2xl rounded-tr-none max-w-[80%] shadow-lg leading-relaxed text-left">
@@ -503,46 +523,104 @@
                 </div>
             `;
             
-            const msg = text.toLowerCase();
             input.value = '';
             chatWindow.scrollTop = chatWindow.scrollHeight;
 
-            setTimeout(() => {
-                let resp = "";
-                
-                // Lógica de respuesta mejorada basada en el C.V.
-                if (msg.includes("akha") || (msg.includes("grupo") && msg.includes("akha"))) {
-                    resp = "En **Grupo AKHA** (Culiacán, actual), Carlos es **Gerente de PMO**. Sus logros clave incluyen: <br>• Ser miembro del **Comité Estratégico (Mastermind)** definiendo el rumbo comercial.<br>• Liderar la **Consultoría de Negocios y Franquicias**, estandarizando modelos para replicabilidad externa.<br>• Impulsar la **Transformación Digital** con Python y Odoo, reduciendo la carga administrativa en un **40%**.<br>• Supervisar transversalmente la cartera de proyectos para asegurar calidad y ROI.";
-                } else if (msg.includes("sukarne")) {
-                    resp = "Como **Arquitecto de Procesos Sr. en SuKarne** (2022-2024), Carlos logró:<br>• Incrementar la **productividad operativa** en las divisiones de Abasto de Ganado y Pieles.<br>• Estandarizar procesos críticos de logística y manufactura usando **ARIS y Bizagi**.<br>• Liderar la alineación entre Planta y TI para integraciones de **ERP**, garantizando continuidad del negocio.<br>• Establecer controles de gobierno para asegurar el cumplimiento normativo y auditorías.";
-                } else if (msg.includes("ditec")) {
-                    resp = "En **DITEC Solutions** (CDMX, 2017-2022), Carlos se desempeñó como **Project Manager**:<br>• Responsable de la modernización tecnológica de sitios de alta seguridad como el **Penal de Aguaruto** y centros **C4**.<br>• Gestionó presupuestos de alto valor y relaciones con proveedores estratégicos sin desviaciones financieras.<br>• Ejecutó migraciones críticas de videovigilancia con **zero downtime**, manteniendo la seguridad operativa en todo momento.";
-                } else if (msg.includes("experience") || msg.includes("trabajo") || msg.includes("experiencia") || msg.includes("trayectoria") || msg.includes("logros")) {
-                    resp = "Carlos tiene 7+ años de experiencia estratégica. Actualmente es Gerente de PMO en **Grupo AKHA** (Estrategia y Franquicias), fue Arquitecto Sr. en **SuKarne** (Productividad y BPM) y Project Manager en **DITEC Solutions** (Infraestructura crítica y Seguridad). ¿Te gustaría profundizar en alguna de estas empresas?";
-                } else if (msg.includes("scrum") || msg.includes("master") || msg.includes("agile") || msg.includes("certificado")) {
-                    resp = "Sí, Carlos cuenta con una certificación profesional en **Scrum Master** vía Coursera. Domina el escalado Agile para maximizar la entrega de valor al negocio. <a href='https://www.coursera.org/account/accomplishments/specialization/NA33RME0O160' target='_blank' class='text-secondary font-bold underline'>Validar aquí</a>.";
-                } else if (msg.includes("stack") || msg.includes("herramientas") || msg.includes("python") || msg.includes("bi")) {
-                    resp = "Su stack está diseñado para el valor: utiliza **Jira** para gestión, **Python** (Pandas/Automatización), **SQL** para análisis de datos, y **Power BI/Looker** para dashboards directivos. También es experto en **ARIS y Bizagi** para BPM.";
-                } else if (msg.includes("skills") || msg.includes("habilidades") || msg.includes("valor")) {
-                    resp = "Carlos ofrece habilidades de alto valor: **Gestión de PMO (Accountability)**, Estrategia Corporativa alineada a ROI, **Reingeniería de Procesos (BPM)** y Consultoría de Franquicias.";
-                } else if (msg.includes("formacion") || msg.includes("maestria") || msg.includes("educacion")) {
-                    resp = "Es **Maestro en Dirección de Proyectos por la UNITEC** (2018-2019) y Licenciado en Administración. Además, posee un **Higher National Diploma** internacional por Michigan State University, lo que avala su visión global.";
-                } else if (msg.includes("contacto") || msg.includes("email") || msg.includes("whatsapp") || msg.includes("llamar")) {
-                    resp = "Puedes contactar a Carlos vía WhatsApp o Llamada al **+52 667 200 5343**, o al correo **carlozbarr@gmail.com**. También puedes agendar directamente en su Calendly usando el botón 'Agenda' arriba.";
-                } else {
-                    resp = "Carlos Barrientos destaca por ser un perfil híbrido excepcional (PMO Estratégico + Automatización técnica). ¿Deseas saber más sobre su impacto en **Grupo AKHA**, **SuKarne** o **DITEC**?";
-                }
+            // Añadir indicador de carga (Escribiendo...)
+            const loadingId = 'loading-' + Date.now();
+            chatWindow.innerHTML += `
+                <div id="${loadingId}" class="flex items-start gap-3">
+                    <div class="w-8 h-8 gradient-bg rounded-lg shrink-0 flex items-center justify-center text-white text-[10px] shadow-sm font-bold">AI</div>
+                    <div class="bg-indigo-500/10 p-4 rounded-2xl rounded-tl-none border border-indigo-500/20 text-slate-300 max-w-[80%] shadow-sm leading-relaxed text-left">
+                        <div class="dot-pulse"><span></span><span></span><span></span></div>
+                    </div>
+                </div>
+            `;
+            chatWindow.scrollTop = chatWindow.scrollHeight;
 
+            const apiKey = "AIzaSyCGI-i_OC2j7LQPsV9RF05nbccrgc1hdNo"; 
+            const systemPrompt = `Eres el asistente virtual experto de Carlos Barrientos, Gerente de PMO y Estrategia.
+            Tu objetivo es responder consultas de reclutadores o clientes potenciales basándote estrictamente en su C.V.
+            
+            PERFIL PROFESIONAL:
+            Gerente de PMO con visión corporativa integral y sólida trayectoria en optimización de operaciones. Miembro permanente del Comité Estratégico (Mastermind). Experto en alinear estrategia corporativa y ejecución operativa. Perfil híbrido enfocado en rentabilidad mediante automatización e IA.
+            
+            EXPERIENCIA DETALLADA (Logros clave según C.V.):
+            - GRUPO AKHA (Sep 2024-Presente): Gerente de Proyectos y Mejora Continua (PMO).
+                * Estrategia: Miembro permanente del Comité Estratégico (Mastermind), colaborando con Dirección General en KPIs.
+                * Consultoría: Liderazgo integral en estructuración de modelos de franquicia, viabilidad legal y procesos.
+                * Transformación Digital: Implementación de Odoo y automatizaciones en Python (reducción de carga administrativa manual en un 40%). Dashboards en Power BI.
+            - SUKARNE (2022-2024): Arq. de Procesos Sr. (Gobierno y Estandarización).
+                * Productividad: Incrementó productividad operativa en Abasto de Ganado y Pieles mediante reingeniería.
+                * Optimización: Mapeo de procesos críticos (Logística y Manufactura) con ARIS y Bizagi.
+                * ERP: Liderazgo en alineación operativa Planta-TI para integraciones ERP sin interrupciones.
+            - DITEC SOLUTIONS (2017-2022): Project Manager.
+                * Infraestructura: Modernización tecnológica del Penal de Aguaruto y centros de monitoreo (C4). Gestión de obra civil, fibra y biométricos.
+                * Rentabilidad: Administración de presupuestos de alto valor sin desviaciones.
+                * Continuidad: Migraciones de videovigilancia crítica con zero downtime.
+            
+            FORMACIÓN Y CERTIFICACIONES:
+            - Maestría en Dirección de Proyectos (UNITEC, 2018-2019).
+            - Licenciatura en Administración (TESH, 2012-2016).
+            - Higher National Diploma (Michigan State University, EE. UU.).
+            - Scrum Master (Certified).
+            
+            HABILIDADES: Scaling Up, Gestión del Cambio, Python (Pandas), Power BI, SQL, ARIS/Bizagi, Jira/Confluence.
+            
+            EXPECTATIVA SALARIAL: $45,000 - $50,000 MXN netos.
+            CONTACTO: WhatsApp/Llamada (+52 667 200 5343), Email (carlozbarr@gmail.com).
+            
+            TONO: Profesional, experto, vendedor de impacto y honesto. Responde siempre en español. No inventes datos que no estén aquí.`;
+
+            // Función para llamar a la API con Exponential Backoff
+            const callGemini = async (retryCount = 0) => {
+                try {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: text }] }],
+                            systemInstruction: { parts: [{ text: systemPrompt }] }
+                        })
+                    });
+
+                    if (!response.ok) throw new Error('API Error');
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text;
+                } catch (error) {
+                    if (retryCount < 5) {
+                        const delay = Math.pow(2, retryCount) * 1000;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        return callGemini(retryCount + 1);
+                    }
+                    throw error;
+                }
+            };
+
+            try {
+                const aiResponse = await callGemini();
+                document.getElementById(loadingId).remove();
+                
                 chatWindow.innerHTML += `
                     <div class="flex items-start gap-3">
                         <div class="w-8 h-8 gradient-bg rounded-lg shrink-0 flex items-center justify-center text-white text-[10px] shadow-sm font-bold">AI</div>
                         <div class="bg-indigo-500/10 p-4 rounded-2xl rounded-tl-none border border-indigo-500/20 text-slate-300 max-w-[80%] shadow-sm leading-relaxed text-left">
-                            ${resp}
+                            ${aiResponse.replace(/\n/g, '<br>')}
                         </div>
                     </div>
                 `;
-                chatWindow.scrollTop = chatWindow.scrollHeight;
-            }, 600);
+            } catch (error) {
+                document.getElementById(loadingId).remove();
+                chatWindow.innerHTML += `
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 gradient-bg rounded-lg shrink-0 flex items-center justify-center text-white text-[10px] shadow-sm font-bold">AI</div>
+                        <div class="bg-red-500/10 p-4 rounded-2xl rounded-tl-none border border-red-500/20 text-red-400 max-w-[80%] shadow-sm text-xs">
+                            Lo siento, hubo un problema al procesar tu consulta. Por favor, intenta de nuevo o contacta a Carlos directamente.
+                        </div>
+                    </div>
+                `;
+            }
+            chatWindow.scrollTop = chatWindow.scrollHeight;
         }
     </script>
 </body>
