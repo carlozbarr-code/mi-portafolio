@@ -1,159 +1,242 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Carlos Barrientos</title>
-    
-    <!-- Tailwind CSS (CDN Principal) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Barrientos | PMO & Strategy</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Iconos (CDN Confiable) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Fuentes Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
                     },
                     colors: {
-                        primary: '#2563eb',
-                        secondary: '#1e293b',
-                        accent: '#0f172a',
+                        primary: '#6366f1', 
+                        secondary: '#06b6d4', 
+                        dark: '#020617', 
+                        akha: '#3b82f6', 
+                        sukarne: '#ef4444', 
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
                     }
                 }
             }
         }
     </script>
-
-    <!-- ESTILOS DE RESPALDO -->
     <style>
-        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            will-change: opacity, visibility;
+        body {
+            background-color: #020617;
+            background-image: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+                              radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.1) 0px, transparent 50%);
         }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: none;
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .touch-action-manipulation {
-            touch-action: manipulation;
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
         }
-        /* Chatbot Animations */
-        .chat-message {
-            animation: fadeIn 0.3s ease-in-out;
+
+        .soft-shadow {
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .ia-shortcut {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            color: #020617;
+            padding: 0.5rem 1rem;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ia-shortcut:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+            background: #ffffff;
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6366f1, #06b6d4);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .experience-card:hover .dot {
+            transform: scale(1.5);
+            background-color: #06b6d4;
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .section-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); opacity: 1; filter: brightness(1); }
+            50% { transform: scale(1.1); opacity: 0.9; filter: brightness(1.2); }
+        }
+        .ai-pulse {
+            animation: pulse-soft 2s ease-in-out infinite;
+        }
+
+        .skill-group-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .skill-group-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Profile Image Fallback Styles */
+        .profile-placeholder {
+            background: linear-gradient(135deg, #1e293b 0%, #020617 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            color: white;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-200 selection:text-blue-900">
+<body class="text-slate-300 font-sans antialiased">
 
-    <!-- Navegación -->
-    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="font-bold text-xl text-primary tracking-tight">Carlos Barrientos</span>
+    <!-- Nav -->
+    <nav class="fixed w-full z-50 px-4 py-6 md:px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass-nav rounded-2xl px-5 py-3 shadow-2xl">
+            <!-- Brand -->
+            <div class="flex items-center gap-3 shrink-0">
+                <div class="w-10 h-10 rounded-xl overflow-hidden border border-white/20 shadow-lg profile-placeholder text-sm">
+                    <img src="Carlos.jpg" alt="CB" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='CB'">
                 </div>
-                <!-- Menú Desktop -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#perfil" class="text-slate-600 hover:text-primary transition-colors text-sm font-medium">Perfil</a>
-                    <a href="#experiencia" class="text-slate-600 hover:text-primary transition-colors text-sm font-medium">Experiencia</a>
-                    <a href="#skills" class="text-slate-600 hover:text-primary transition-colors text-sm font-medium">Competencias</a>
-                    <a href="#carlos-ai" class="text-slate-600 hover:text-primary transition-colors text-sm font-medium"><i class="fas fa-robot text-blue-500 mr-1"></i> Carlos AI</a>
-                    <a href="#contacto" class="px-4 py-2 rounded-full bg-primary text-white hover:bg-blue-700 transition-colors text-sm font-medium shadow-lg shadow-blue-500/30">Contactar</a>
+                <div class="flex flex-col">
+                    <span class="font-heading font-bold text-white tracking-tighter text-base leading-none">Carlos Barrientos</span>
+                    <span class="text-[10px] text-indigo-400 font-bold uppercase tracking-widest mt-1">PMO & Strategy</span>
                 </div>
-                <!-- Menú Móvil -->
-                <div class="md:hidden flex items-center">
-                    <a href="#contacto" class="text-primary font-bold text-sm mr-4">Contactar</a>
-                </div>
+            </div>
+
+            <!-- Full Menu (Desktop) -->
+            <div class="hidden lg:flex items-center gap-8 text-[11px] font-extrabold uppercase tracking-[0.2em] text-slate-400">
+                <a href="#experiencia" class="nav-link hover:text-white">Experiencia</a>
+                <a href="#stack" class="nav-link hover:text-white">Stack</a>
+                <a href="#formacion" class="nav-link hover:text-white">Formación</a>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <a href="#ia" class="ia-shortcut shadow-lg group">
+                    <div class="w-6 h-6 gradient-bg rounded-lg flex items-center justify-center ai-pulse">
+                        <i class="fas fa-wand-magic-sparkles text-[12px] text-white"></i>
+                    </div>
+                    <span class="text-[11px] uppercase tracking-widest hidden xs:inline">Consultar IA</span>
+                </a>
+                
+                <a href="https://calendly.com/carlosbarrientosf/30min" target="_blank" class="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-500 transition-all text-xs flex items-center gap-2 shadow-lg shadow-indigo-500/20">
+                    <i class="fas fa-calendar-check hidden xs:inline"></i> Agenda
+                </a>
+                
+                <div class="h-6 w-[1px] bg-white/10 mx-1 hidden sm:block"></div>
+                
+                <a href="https://wa.me/526672005343" target="_blank" class="hover:text-green-400 transition-colors text-xl hidden xs:block">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Header -->
-    <header id="inicio" class="pt-24 pb-12 lg:pt-48 lg:pb-32 bg-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-blue-50 blur-3xl opacity-50"></div>
-        
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center lg:text-left flex flex-col-reverse lg:flex-row items-center gap-8">
-            <div class="lg:w-1/2">
-                <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-blue-600 uppercase bg-blue-100 rounded-full">
-                    PMO & Estrategia Corporativa
-                </div>
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-4 sm:mb-6 leading-tight">
-                    Carlos <span class="text-primary">Barrientos</span>
+    <!-- Hero Section -->
+    <section class="pt-48 pb-24 px-6 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-500/10 text-primary text-xs font-bold uppercase tracking-widest mb-6 border border-indigo-500/20">
+                    Strategic Project Management
+                </span>
+                <h1 class="text-5xl lg:text-7xl font-heading font-extrabold text-white leading-[1.1] mb-8">
+                    Estrategia que se <span class="gradient-text">ejecuta</span>.
                 </h1>
-                <p class="text-lg sm:text-xl md:text-2xl text-slate-600 mb-8 font-light leading-relaxed">
-                    Gerente de Proyectos y Mejora Continua (PMO). <br class="hidden sm:block">
-                    Experto en transformar caos en <strong class="text-slate-900 font-semibold">procesos rentables</strong>.
+                <p class="text-xl text-slate-400 leading-relaxed mb-10 text-balance">
+                    Gerente de Proyectos y Mejora Continua (PMO) experto en alinear <span class="text-white font-semibold text-lg leading-tight">estrategia corporativa</span> y ejecución operativa. Perfil híbrido enfocado en rentabilidad mediante automatización e inteligencia artificial.
                 </p>
-                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 w-full">
-                    <a href="Carlos_Barrientos_CV.pdf" download class="w-full sm:w-auto px-8 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-all font-medium flex items-center justify-center gap-2 shadow-xl touch-action-manipulation">
+                <div class="flex flex-wrap gap-4">
+                    <a href="Carlos_Barrientos_CV.pdf" download class="px-8 py-4 bg-white text-dark rounded-2xl font-bold hover:bg-slate-200 transition-all soft-shadow flex items-center gap-3 text-nowrap">
                         <i class="fas fa-file-pdf"></i> Descargar CV
                     </a>
-                    <a href="https://wa.me/526672005343" target="_blank" class="w-full sm:w-auto px-8 py-3 bg-white border border-green-500 text-green-600 rounded-lg hover:bg-green-50 transition-all font-medium flex items-center justify-center gap-2 touch-action-manipulation">
+                    <a href="https://wa.me/526672005343" target="_blank" class="px-8 py-4 bg-white/5 text-green-500 border border-green-500/30 rounded-2xl font-bold hover:bg-green-50/10 transition-all flex items-center gap-2">
                         <i class="fab fa-whatsapp text-xl"></i> WhatsApp
                     </a>
                 </div>
             </div>
-            
-            <!-- Foto / Avatar -->
-            <div class="lg:w-1/2 flex justify-center lg:justify-end w-full">
-                <div class="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-full p-1 shadow-2xl">
-                    <div class="w-full h-full bg-slate-100 rounded-full flex items-center justify-center overflow-hidden relative border-4 border-white shadow-inner">
-                        <img src="Carlos.jpg" alt="Carlos Barrientos" class="w-full h-full object-cover">
-                    </div>
-                    <!-- Badges -->
-                    <div class="absolute top-2 -right-2 bg-white p-2 sm:p-3 rounded-lg shadow-lg flex items-center gap-2 animate-bounce hidden sm:flex" style="animation-duration: 3s;">
-                        <i class="fas fa-certificate text-yellow-500"></i>
-                        <span class="text-xs font-bold text-slate-700">PMP / Maestría</span>
+
+            <div class="relative">
+                <div class="relative z-10 w-full aspect-square max-w-md mx-auto rounded-4xl overflow-hidden shadow-2xl border-[12px] border-slate-800/50 profile-placeholder text-6xl">
+                    <img src="Carlos.jpg" alt="Carlos Barrientos" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='CB'">
+                </div>
+                <!-- Float Card 1 -->
+                <div class="absolute -top-6 -right-6 bg-slate-900/90 backdrop-blur p-4 rounded-2xl shadow-xl border border-white/10 z-20 floating">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-500">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">Impacto</div>
+                            <div class="text-sm font-bold text-white text-nowrap">+40% Eficiencia</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Sección Perfil -->
-    <section id="perfil" class="py-12 sm:py-20 bg-slate-50 fade-in-section">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-2xl p-6 sm:p-8 md:p-12 shadow-sm border border-slate-100">
-                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                    <i class="fas fa-user-circle text-primary"></i> Perfil Profesional
-                </h2>
-                <p class="text-base sm:text-lg text-slate-600 leading-relaxed text-justify sm:text-left">
-                    Gerente de Proyectos y Mejora Continua (PMO) experto en alinear estrategia corporativa y ejecución operativa. Perfil híbrido que combina <strong>gestión de procesos (BPM)</strong>, metodologías ágiles y <strong>transformación digital</strong> (Python/Power BI) para maximizar la rentabilidad en entornos corporativos de alta exigencia. Potencio mis habilidades de desarrollo utilizando <strong>Inteligencia Artificial</strong> como asistente técnico.
-                </p>
-                <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-                    <div class="p-4 bg-blue-50 rounded-xl border border-blue-100 flex items-start gap-3 md:block">
-                        <i class="fas fa-chart-line text-2xl text-blue-600 md:mb-3"></i>
-                        <div>
-                            <h3 class="font-bold text-slate-900">Estrategia</h3>
-                            <p class="text-sm text-slate-600">Alineación de KPIs y objetivos financieros.</p>
+                <!-- Float Card 2 -->
+                <div class="absolute -bottom-4 -left-6 bg-slate-900/90 backdrop-blur p-4 rounded-2xl shadow-xl border border-white/10 z-20 floating" style="animation-delay: 1.5s">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400">
+                            <i class="fas fa-robot"></i>
                         </div>
-                    </div>
-                    <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-100 flex items-start gap-3 md:block">
-                        <i class="fas fa-code text-2xl text-indigo-600 md:mb-3"></i>
                         <div>
-                            <h3 class="font-bold text-slate-900">Tecnología</h3>
-                            <p class="text-sm text-slate-600">Python, Power BI, Automatización RPA con IA.</p>
-                        </div>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3 md:block">
-                        <i class="fas fa-shield-alt text-2xl text-slate-600 md:mb-3"></i>
-                        <div>
-                            <h3 class="font-bold text-slate-900">Gobierno</h3>
-                            <p class="text-sm text-slate-600">Gestión de Riesgos, ISO y Compliance.</p>
+                            <div class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">Enfoque</div>
+                            <div class="text-sm font-bold text-white text-nowrap">IA & Automation</div>
                         </div>
                     </div>
                 </div>
@@ -162,302 +245,301 @@
     </section>
 
     <!-- Experiencia -->
-    <section id="experiencia" class="py-12 sm:py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center text-slate-900 mb-10 sm:mb-16">Trayectoria Profesional</h2>
-            
-            <div class="relative space-y-8 sm:space-y-12">
-                <!-- Línea vertical -->
-                <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 -ml-0.5 hidden md:block"></div>
+    <section id="experiencia" class="py-24 px-6 bg-slate-900/30">
+        <div class="max-w-4xl mx-auto section-card p-10 md:p-16 rounded-[3rem] shadow-2xl border border-white/5">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-heading font-extrabold text-white mb-4 tracking-tighter">Trayectoria Profesional</h2>
+                <div class="w-16 h-1 gradient-bg mx-auto rounded-full"></div>
+            </div>
 
-                <!-- GRUPO AKHA -->
-                <div class="relative md:flex items-center justify-between fade-in-section">
-                    <div class="md:w-5/12 order-1 md:text-right pr-0 md:pr-8 mb-4 md:mb-0">
-                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Gerente de Proyectos y Mejora Continua (PMO)</h3>
-                        <p class="text-primary font-semibold text-lg mb-1">Grupo AKHA</p>
-                        <span class="inline-block px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold mb-2">Sep 2024 - Presente</span>
+            <div class="relative space-y-12 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-800 before:to-transparent">
+                <!-- AKHA -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group experience-card">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark bg-slate-800 text-slate-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-all dot">
+                        <i class="fas fa-briefcase text-xs"></i>
                     </div>
-                    <div class="absolute left-4 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-white border-4 border-primary shadow md:block hidden"></div>
-                    <div class="md:w-5/12 order-2 bg-slate-50 p-5 sm:p-6 rounded-xl border border-slate-100 shadow-sm pl-4 sm:pl-8">
-                        <ul class="space-y-3 text-slate-600 text-sm">
-                            <li class="flex gap-2"><i class="fas fa-check text-green-500 mt-1 flex-shrink-0"></i> Miembro permanente del Comité Estratégico (Mastermind).</li>
-                            <li class="flex gap-2"><i class="fas fa-check text-green-500 mt-1 flex-shrink-0"></i> Automatización con Python y IA (-40% carga).</li>
-                            <li class="flex gap-2"><i class="fas fa-check text-green-500 mt-1 flex-shrink-0"></i> Implementación de Dashboards Power BI.</li>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-slate-800/40 p-8 rounded-3xl border border-white/5 hover:border-indigo-500/30 transition-all">
+                        <div class="flex flex-col mb-2">
+                            <h3 class="font-heading font-bold text-white text-lg leading-tight">Gerente de Proyectos y Mejora Continua (PMO)</h3>
+                            <div class="text-akha font-extrabold text-sm uppercase tracking-widest mt-1">Grupo AKHA</div>
+                        </div>
+                        <p class="text-slate-500 text-[10px] font-bold mb-4 bg-white/5 inline-block px-2 py-0.5 rounded uppercase">Sep 2024 - Actual</p>
+                        <ul class="text-slate-400 text-sm space-y-2 mt-4 leading-tight">
+                            <li class="flex gap-2"><i class="fas fa-check text-primary mt-1 text-[8px]"></i> Miembro del Comité Mastermind impulsando rentabilidad.</li>
+                            <li class="flex gap-2"><i class="fas fa-check text-primary mt-1 text-[8px]"></i> Automatización Python (-40% carga adm.).</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- SUKARNE -->
-                <div class="relative md:flex items-center justify-between fade-in-section">
-                    <div class="md:w-5/12 order-2 pl-0 md:pl-8 mb-4 md:mb-0">
-                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Arquitecto de Procesos Sr.</h3>
-                        <p class="text-primary font-semibold text-lg mb-1">SuKarne</p>
-                        <span class="inline-block px-3 py-1 bg-slate-200 text-slate-700 rounded-full text-xs font-bold mb-2">Mar 2022 - Jun 2024</span>
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group experience-card">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark bg-slate-800 text-slate-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-all dot">
+                        <i class="fas fa-project-diagram text-xs"></i>
                     </div>
-                    <div class="absolute left-4 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-white border-4 border-slate-300 shadow md:block hidden"></div>
-                    <div class="md:w-5/12 order-1 bg-slate-50 p-5 sm:p-6 rounded-xl border border-slate-100 shadow-sm md:text-right pr-4 sm:pr-8">
-                        <ul class="space-y-3 text-slate-600 text-sm inline-block text-left">
-                            <li class="flex gap-2"><i class="fas fa-check text-slate-400 mt-1 flex-shrink-0"></i> Incremento productividad Pieles y Abasto.</li>
-                            <li class="flex gap-2"><i class="fas fa-check text-slate-400 mt-1 flex-shrink-0"></i> Mapeo de procesos con ARIS y Bizagi.</li>
-                            <li class="flex gap-2"><i class="fas fa-check text-slate-400 mt-1 flex-shrink-0"></i> Gestión del cambio en integración de ERPs.</li>
-                        </ul>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-slate-800/40 p-8 rounded-3xl border border-white/5 hover:border-indigo-500/30 transition-all">
+                        <div class="flex flex-col mb-4">
+                            <h3 class="font-heading font-bold text-white text-lg leading-tight">Arq. de Procesos Sr.</h3>
+                            <div class="text-sukarne font-extrabold text-sm uppercase tracking-widest mt-1">SuKarne</div>
+                        </div>
+                        <p class="text-slate-500 text-[10px] font-bold mb-4 bg-white/5 inline-block px-2 py-0.5 rounded uppercase tracking-tighter">2022 - 2024</p>
+                        <p class="text-slate-400 text-sm mt-4 leading-relaxed">Mapeo de procesos críticos con ARIS y Bizagi. Incremento de productividad operativa significativa.</p>
                     </div>
                 </div>
 
                 <!-- DITEC -->
-                <div class="relative md:flex items-center justify-between fade-in-section">
-                    <div class="md:w-5/12 order-1 md:text-right pr-0 md:pr-8 mb-4 md:mb-0">
-                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Project Manager</h3>
-                        <p class="text-primary font-semibold text-lg mb-1">DITEC Solutions (CDMX)</p>
-                        <span class="inline-block px-3 py-1 bg-slate-200 text-slate-700 rounded-full text-xs font-bold mb-2">Sep 2017 - Mar 2022</span>
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group experience-card">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark bg-slate-800 text-slate-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-all dot">
+                        <i class="fas fa-shield-alt text-xs"></i>
                     </div>
-                    <div class="absolute left-4 md:left-1/2 -ml-3 w-6 h-6 rounded-full bg-white border-4 border-slate-300 shadow md:block hidden"></div>
-                    <div class="md:w-5/12 order-2 bg-slate-50 p-5 sm:p-6 rounded-xl border border-slate-100 shadow-sm pl-4 sm:pl-8">
-                        <ul class="space-y-3 text-slate-600 text-sm">
-                            <li class="flex gap-2"><i class="fas fa-check text-slate-400 mt-1 flex-shrink-0"></i> Modernización del Penal de Aguaruto y C4.</li>
-                            <li class="flex gap-2"><i class="fas fa-check text-slate-400 mt-1 flex-shrink-0"></i> Gestión de obra civil y biométricos (ISO 27001).</li>
-                        </ul>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-slate-800/40 p-8 rounded-3xl border border-white/5 hover:border-indigo-500/30 transition-all">
+                        <div class="flex flex-col mb-4">
+                            <h3 class="font-heading font-bold text-white text-lg leading-tight">Project Manager</h3>
+                            <div class="text-akha font-extrabold text-sm uppercase tracking-widest mt-1">DITEC Solutions (CDMX)</div>
+                        </div>
+                        <p class="text-slate-500 text-[10px] font-bold mb-4 bg-white/5 inline-block px-2 py-0.5 rounded uppercase tracking-tighter">2017 - 2022</p>
+                        <p class="text-slate-400 text-sm mt-4 leading-relaxed">Gestión de infraestructura tecnológica crítica y seguridad pública. Cero downtime en migraciones.</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Competencias (ACTUALIZADA Y ALINEADA) -->
-    <section id="skills" class="py-12 sm:py-20 bg-slate-900 text-white fade-in-section">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-16">Stack Tecnológico & Habilidades</h2>
+    <!-- Stack Tecnológico & Habilidades Estratégicas -->
+    <section id="stack" class="py-24 bg-dark text-white rounded-[4rem] mx-6 mb-24 overflow-hidden relative shadow-2xl border border-white/5">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[150px] rounded-full"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/10 blur-[150px] rounded-full"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-heading font-bold mb-4 tracking-tighter">Superpowers & Tech Stack</h2>
+                <p class="text-slate-500 uppercase text-xs font-bold tracking-[0.3em]">Justificación de Valor Estratégico al Negocio</p>
+            </div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-                
-                <!-- Gestión & Estrategia -->
-                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50">
-                    <h3 class="text-lg sm:text-xl font-bold mb-4 flex items-center gap-2 text-blue-400">
-                        <i class="fas fa-chess"></i> Gestión & Estrategia
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-balance">
+                <!-- 1. Gestión & Agile -->
+                <div class="skill-group-card p-8 rounded-[2rem]">
+                    <h3 class="font-heading font-bold text-indigo-400 flex items-center gap-3 text-lg mb-6">
+                        <i class="fas fa-tasks"></i> Gestión & Agile
                     </h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4 font-bold">Valor: Administración de Backlogs & Dashboards</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">PMO</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">Scrum Master</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">Scaling Up</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">Gestión del Cambio</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">Gobierno Corporativo</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">Lean / Six Sigma</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">ISO 31000 / 27001</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-lg text-xs">Jira</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-lg text-xs">Confluence</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-lg text-xs">Trello</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-lg text-xs">MS Project</span>
                     </div>
                 </div>
 
-                <!-- Técnico & Data -->
-                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50">
-                    <h3 class="text-lg sm:text-xl font-bold mb-4 flex items-center gap-2 text-green-400">
-                        <i class="fas fa-terminal"></i> Técnico & Data (DAR)
+                <!-- 2. Datos & Automatización -->
+                <div class="skill-group-card p-8 rounded-[2rem]">
+                    <h3 class="font-heading font-bold text-cyan-400 flex items-center gap-3 text-lg mb-6">
+                        <i class="fas fa-terminal"></i> Datos & Automatización
                     </h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4 font-bold">Valor: Scripting para Automatización de Tareas</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">Python (Pandas)</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">Power BI</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">Excel Experto (VBA)</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-700 text-slate-300 rounded border border-slate-600 text-xs sm:text-sm">SQL (Básico)</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-700 text-slate-300 rounded border border-slate-600 text-xs sm:text-sm">R / QGIS (Básico)</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-lg text-xs">Python</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-lg text-xs">SQL</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-lg text-xs font-semibold">Excel VBA (Macros)</span>
                     </div>
                 </div>
 
-                <!-- Software & Tools -->
-                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50">
-                    <h3 class="text-lg sm:text-xl font-bold mb-4 flex items-center gap-2 text-purple-400">
-                        <i class="fas fa-laptop-code"></i> Software & Tools
+                <!-- 3. Business Intelligence -->
+                <div class="skill-group-card p-8 rounded-[2rem]">
+                    <h3 class="font-heading font-bold text-green-400 flex items-center gap-3 text-lg mb-6">
+                        <i class="fas fa-chart-pie"></i> Business Intelligence (BI)
                     </h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4 font-bold">Valor: Dashboards Directivos en tiempo real</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">Jira / Confluence</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">Odoo ERP</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">Loom / Rovo</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">ARIS / Bizagi</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-700 text-slate-300 rounded border border-slate-600 text-xs sm:text-sm">GitHub / Netlify (Básico)</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-lg text-xs">Power BI</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-lg text-xs">Looker</span>
                     </div>
                 </div>
 
-                <!-- IA & Automatización -->
-                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50">
-                    <h3 class="text-lg sm:text-xl font-bold mb-4 flex items-center gap-2 text-yellow-400">
-                        <i class="fas fa-microchip"></i> IA & RPA
+                <!-- 4. Arquitectura de Procesos -->
+                <div class="skill-group-card p-8 rounded-[2rem]">
+                    <h3 class="font-heading font-bold text-purple-400 flex items-center gap-3 text-lg mb-6">
+                        <i class="fas fa-project-diagram"></i> Arquitectura de Procesos
                     </h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4 font-bold">Valor: Modelado BPMN 2.0</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">ChatGPT / Gemini / Claude</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-800 rounded border border-slate-600 text-xs sm:text-sm">Prompt Engineering</span>
-                        <span class="px-2 sm:px-3 py-1 bg-slate-700 text-slate-300 rounded border border-slate-600 text-xs sm:text-sm">n8n (Básico)</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-lg text-xs">ARIS</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-lg text-xs">Bizagi</span>
                     </div>
                 </div>
 
-            </div>
-        </div>
-    </section>
-
-    <!-- Educación -->
-    <section class="py-12 sm:py-16 bg-white border-t border-slate-100 fade-in-section">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-8">Formación Académica</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="p-6 rounded-xl bg-slate-50 border border-slate-100">
-                    <div class="font-bold text-slate-900">Maestría Dirección Proyectos</div>
-                    <div class="text-sm text-slate-500 mt-1">UNITEC (2018-2019)</div>
-                </div>
-                <div class="p-6 rounded-xl bg-slate-50 border border-slate-100">
-                    <div class="font-bold text-slate-900">Lic. en Administración</div>
-                    <div class="text-sm text-slate-500 mt-1">TESH (2012-2016)</div>
-                </div>
-                <div class="p-6 rounded-xl bg-slate-50 border border-slate-100">
-                    <div class="font-bold text-slate-900">Higher National Diploma</div>
-                    <div class="text-sm text-slate-500 mt-1">Michigan State Univ.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN IA: PREGÚNTALE A CARLOS -->
-    <section id="carlos-ai" class="py-12 sm:py-20 bg-slate-900 relative overflow-hidden fade-in-section">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-8 sm:mb-10">
-                <span class="inline-block px-3 py-1 bg-indigo-900 text-indigo-300 rounded-full text-xs font-bold mb-3 border border-indigo-700">EXPERIENCIA INTERACTIVA</span>
-                <h2 class="text-2xl sm:text-4xl font-bold text-white mb-4">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Pregúntale a mi IA</span>
-                </h2>
-                <p class="text-slate-400 text-sm sm:text-base">Escribe sobre mi experiencia, sueldo, uso de IA o habilidades.</p>
-            </div>
-
-            <!-- Interfaz del Chat -->
-            <div class="bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 overflow-hidden max-w-xl mx-auto">
-                <div id="chat-messages" class="h-64 sm:h-80 overflow-y-auto p-4 sm:p-6 space-y-4 scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-800">
-                    <div class="chat-message flex items-start gap-3">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-robot text-white text-xs"></i>
+                <!-- 5. ERP & Sistemas -->
+                <div class="skill-group-card p-8 rounded-[2rem] lg:col-span-2">
+                    <h3 class="font-heading font-bold text-orange-400 flex items-center gap-3 text-lg mb-6">
+                        <i class="fas fa-network-wired"></i> ERP & Sistemas
+                    </h3>
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <p class="text-sm text-slate-300 leading-relaxed mb-2 font-bold uppercase tracking-widest text-[10px]">Odoo</p>
+                            <p class="text-xs text-slate-400 italic">Implementación y personalización de módulos operativos.</p>
                         </div>
-                        <div class="bg-slate-700 text-slate-200 p-3 rounded-2xl rounded-tl-none text-sm">
-                            ¡Hola! Soy el asistente virtual de Carlos. <br><br>
-                            Intenta preguntar: <em>"¿Cómo usas la IA?"</em>, <em>"¿Qué gestión manejas?"</em> o <em>"Do you speak English?"</em>
+                        <div>
+                            <p class="text-sm text-slate-300 leading-relaxed mb-2 font-bold uppercase tracking-widest text-[10px]">SAP</p>
+                            <p class="text-xs text-slate-400 italic">Interoperabilidad técnica entre Planta y TI.</p>
                         </div>
                     </div>
                 </div>
-                <div class="p-3 sm:p-4 bg-slate-900 border-t border-slate-700">
-                    <form id="chat-form" class="flex gap-2" onsubmit="handleChat(event)">
-                        <input type="text" id="chat-input" placeholder="Escribe aquí..." class="flex-1 bg-slate-800 border border-slate-600 text-white rounded-xl px-4 py-2 focus:outline-none focus:border-blue-500 transition-colors text-sm sm:text-base">
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-500 text-white rounded-xl px-4 py-2 transition-colors">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
+            </div>
+
+            <!-- BLOQUE RESTAURADO: Habilidades de Alto Valor Estratégico -->
+            <div class="mt-16 bg-white/5 border border-white/10 rounded-[3rem] p-10 md:p-14 shadow-inner text-balance">
+                <h3 class="text-2xl font-bold text-white mb-8 flex items-center gap-3 leading-tight">🧠 Habilidades de Alto Valor Estratégico</h3>
+                <div class="grid md:grid-cols-2 gap-10 text-sm leading-relaxed">
+                    <div class="space-y-6">
+                        <div class="group">
+                            <h4 class="text-indigo-400 font-bold mb-1 flex items-center gap-2">Agile Frameworks</h4>
+                            <p class="text-slate-400">Scrum Master (Certified), Scaling Agile (Team-of-Teams) y dominio de flujos Kanban.</p>
+                        </div>
+                        <div class="group">
+                            <h4 class="text-indigo-400 font-bold mb-1 flex items-center gap-2">Gestión de PMO</h4>
+                            <p class="text-slate-400">Supervisión transversal de cartera, control de hitos (tiempo/costo/calidad) y rendición de cuentas ejecutiva (Accountability).</p>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="group">
+                            <h4 class="text-indigo-400 font-bold mb-1 flex items-center gap-2">Estrategia Corporativa</h4>
+                            <p class="text-slate-400">Alineación de proyectos con objetivos financieros (ROI) y participación en Comités Estratégicos (Mastermind).</p>
+                        </div>
+                        <div class="group">
+                            <h4 class="text-indigo-400 font-bold mb-1 flex items-center gap-2">Reingeniería & Modernización</h4>
+                            <p class="text-slate-400">Optimización BPM para escalabilidad de franquicias e infraestructura crítica bajo protocolos de alta seguridad.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contacto Footer -->
-    <footer id="contacto" class="bg-slate-50 border-t border-slate-200 py-12">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mb-6">¿Listo para colaborar?</h2>
-            <div class="flex flex-col sm:flex-row justify-center gap-4 w-full">
-                <a href="mailto:carlozbarr@gmail.com" class="w-full sm:w-auto px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-blue-700 shadow-lg transition-all flex justify-center items-center">
-                    <i class="fas fa-paper-plane mr-2"></i> Correo
-                </a>
-                <a href="https://wa.me/526672005343" target="_blank" class="w-full sm:w-auto px-6 py-3 border border-green-500 text-green-600 bg-white hover:bg-green-50 rounded-md text-base font-medium shadow-lg transition-all flex justify-center items-center">
-                    <i class="fab fa-whatsapp mr-2"></i> WhatsApp
-                </a>
-                <a href="https://calendly.com/carlosbarrientosf/30min" target="_blank" class="w-full sm:w-auto px-6 py-3 border border-blue-500 text-blue-600 bg-white hover:bg-blue-50 rounded-md text-base font-medium shadow-lg transition-all flex justify-center items-center">
-                    <i class="fas fa-calendar-check mr-2"></i> Agendar
-                </a>
-            </div>
-            <div class="mt-12 text-slate-400 text-sm">
-                &copy; 2025 Carlos Barrientos. Culiacán, Sinaloa.
+    <!-- Formación Académica -->
+    <section id="formacion" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-heading font-extrabold text-white mb-16 text-center tracking-tight">Formación Académica</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-800/40 backdrop-blur p-8 rounded-[2.5rem] border border-white/5 shadow-xl transition-transform hover:-translate-y-2">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-primary text-xl mb-6 shadow-inner">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="font-heading font-bold text-white mb-2 leading-tight text-lg">Maestría en Dirección de Proyectos</h4>
+                    <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">UNITEC (2018-2019)</p>
+                </div>
+                <div class="bg-slate-800/40 backdrop-blur p-8 rounded-[2.5rem] border border-white/5 shadow-xl transition-transform hover:-translate-y-2">
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center text-secondary text-xl mb-6 shadow-inner">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h4 class="font-heading font-bold text-white mb-2 leading-tight text-lg">Licenciatura en Administración</h4>
+                    <p class="text-slate-400 text-sm font-medium uppercase tracking-widest">TESH (2012-2016)</p>
+                </div>
+                <div class="bg-slate-800/40 backdrop-blur p-8 rounded-[2.5rem] border border-white/5 shadow-xl transition-transform hover:-translate-y-2 text-balance">
+                    <div class="w-12 h-12 rounded-2xl bg-slate-700/50 flex items-center justify-center text-slate-300 text-xl mb-6 shadow-inner">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h4 class="font-heading font-bold text-white mb-2 leading-tight text-lg text-balance">Higher National Diploma</h4>
+                    <p class="text-slate-400 text-sm font-medium uppercase tracking-widest leading-tight">Michigan State Univ. (2016)</p>
+                </div>
             </div>
         </div>
+    </section>
+
+    <!-- Chat IA Interactivo -->
+    <section id="ia" class="py-24 px-6 max-w-4xl mx-auto">
+        <div class="section-card p-10 md:p-14 rounded-[3rem] shadow-2xl flex flex-col md:flex-row gap-12 items-center border border-white/5">
+            <div class="md:w-1/3 text-center md:text-left">
+                <div class="w-24 h-24 relative mx-auto md:mx-0 mb-6 group">
+                    <div class="absolute inset-0 gradient-bg rounded-3xl rotate-6 opacity-20 group-hover:rotate-12 transition-transform ai-pulse"></div>
+                    <div class="relative w-full h-full gradient-bg rounded-3xl flex items-center justify-center shadow-xl">
+                        <i class="fas fa-wand-magic-sparkles text-white text-3xl"></i>
+                    </div>
+                </div>
+                <h3 class="text-3xl font-heading font-extrabold text-white mb-2 tracking-tighter">Consultar IA</h3>
+                <p class="text-slate-500 text-sm italic leading-relaxed">Pregunte sobre mi impacto profesional, certificaciones o dominio técnico.</p>
+            </div>
+            
+            <div class="flex-1 w-full bg-slate-900/50 p-6 rounded-3xl border border-white/5">
+                <div id="chat-window" class="h-80 overflow-y-auto mb-6 space-y-4 pr-4 scroll-smooth font-medium text-sm">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 gradient-bg rounded-lg shrink-0 flex items-center justify-center text-white text-[10px] shadow-sm font-bold">AI</div>
+                        <div class="bg-indigo-500/10 p-4 rounded-2xl rounded-tl-none border border-indigo-500/20 text-slate-300 shadow-sm leading-relaxed">
+                            ¡Hola! Soy el asistente entrenado de Carlos. <br><br>
+                            Puedo informarte sobre su trayectoria como Gerente de PMO, su dominio de Python, su certificación Scrum Master o su capacidad de reingeniería de procesos corporativos. <br><br>
+                            ¿Qué te gustaría validar primero?
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <input type="text" id="chat-input" onkeypress="if(event.key === 'Enter') sendMessage()" placeholder="Escriba su consulta aquí..." class="w-full px-6 py-4 bg-slate-950/50 rounded-2xl border-none focus:ring-2 focus:ring-primary outline-none transition-all text-white font-semibold shadow-inner">
+                    <button onclick="sendMessage()" class="absolute right-3 top-2.5 w-11 h-11 gradient-bg text-white rounded-xl shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 text-center">
+        <div class="flex justify-center gap-10 mb-8 text-2xl text-slate-500">
+            <a href="https://linkedin.com/in/carlos-barrientos-fernández" target="_blank" class="hover:text-blue-500 transition-colors"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:carlozbarr@gmail.com" class="hover:text-primary transition-colors"><i class="fas fa-envelope"></i></a>
+            <a href="https://wa.me/526672005343" target="_blank" class="hover:text-green-500 transition-colors"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="w-12 h-12 mx-auto mb-4 rounded-xl profile-placeholder text-xs border border-white/10 opacity-50">
+            CB
+        </div>
+        <p class="text-slate-600 font-bold text-[10px] uppercase tracking-[0.4em]">&copy; 2026 Carlos Barrientos • Strategy & Execution</p>
     </footer>
 
     <script>
-        function handleChat(event) {
-            event.preventDefault();
+        function sendMessage() {
             const input = document.getElementById('chat-input');
-            const message = input.value.trim().toLowerCase();
-            const chatBox = document.getElementById('chat-messages');
+            const chatWindow = document.getElementById('chat-window');
+            const text = input.value.trim();
+            if(!text) return;
 
-            if (!message) return;
-
-            chatBox.innerHTML += `
-                <div class="chat-message flex items-start gap-3 justify-end">
-                    <div class="bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none text-sm max-w-[85%] text-left">
-                        ${input.value}
-                    </div>
-                    <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-user text-slate-300 text-xs"></i>
+            chatWindow.innerHTML += `
+                <div class="flex justify-end mb-4">
+                    <div class="bg-slate-700 text-white p-4 rounded-2xl rounded-tr-none max-w-[80%] shadow-lg leading-relaxed text-left">
+                        ${text}
                     </div>
                 </div>
             `;
+            
+            const msg = text.toLowerCase();
             input.value = '';
-            chatBox.scrollTop = chatBox.scrollHeight;
+            chatWindow.scrollTop = chatWindow.scrollHeight;
 
             setTimeout(() => {
-                let response = "";
-                const msg = message;
-
-                // IA & AUTOMATIZACIÓN
-                if (msg.includes("ia") || msg.includes("inteligencia artificial") || msg.includes("ai") || msg.includes("gpt") || msg.includes("gemini") || msg.includes("claude") || msg.includes("prompt")) {
-                    response = "Utilizo modelos avanzados de IA (ChatGPT, Gemini, Claude) como asistentes de desarrollo y productividad. Me apoyo en ellos para generar y optimizar scripts de Python, resolver errores de código y acelerar la creación de automatizaciones (RPA), actuando como un 'multiplicador de fuerza' en mis proyectos.";
-                } 
-                // GESTIÓN (Nuevo)
-                else if (msg.includes("gestión") || msg.includes("pmo") || msg.includes("scrum") || msg.includes("scaling") || msg.includes("iso") || msg.includes("riesgos")) {
-                    response = "Soy experto en Gestión & Estrategia. Lidero PMO, aplico Scrum Master, metodologías como Scaling Up para crecimiento empresarial, Lean/Six Sigma y manejo Gobierno Corporativo y Gestión del Cambio. También tengo experiencia en normas ISO 31000 y 27001 para gestión de riesgos y seguridad.";
-                }
-                // TÉCNICO & DATA (Nuevo)
-                else if (msg.includes("data") || msg.includes("python") || msg.includes("power bi") || msg.includes("excel") || msg.includes("sql") || msg.includes("r ") || msg.includes("qgis") || msg.includes("técnico")) {
-                    response = "En el área Técnico & Data (DAR), soy experto en Python (Pandas) para automatización, Power BI para visualización y Excel Avanzado (VBA). Cuento con nivel básico-funcional en SQL, R y QGIS para análisis de datos geoespaciales y estadísticos.";
-                }
-                // SOFTWARE & TOOLS (Nuevo)
-                else if (msg.includes("software") || msg.includes("tools") || msg.includes("jira") || msg.includes("confluence") || msg.includes("odoo") || msg.includes("loom") || msg.includes("rovo") || msg.includes("github") || msg.includes("netlify") || msg.includes("aris") || msg.includes("bizagi")) {
-                    response = "Domino un amplio stack de Software & Tools: Jira y Confluence para gestión ágil, Odoo ERP, Loom y Rovo para documentación y comunicación asíncrona, y herramientas de modelado como ARIS y Bizagi. Uso GitHub y Netlify a nivel básico para control de versiones y despliegues web.";
-                }
-                // INGLÉS
-                else if (msg.includes("english") || msg.includes("speak")) {
-                    response = "I have a Professional English level (Intermediate-Advanced). I hold a Higher National Diploma (HND) in English & Culture from Michigan State University.";
-                } 
-                // EXPERIENCIA / PERFIL
-                else if (msg.includes("experiencia") || msg.includes("trabajo") || msg.includes("perfil") || msg.includes("trayectoria")) {
-                    response = "Tengo +7 años de experiencia combinada como Gerente PMO en AKHA, Arquitecto de Procesos en SuKarne y Project Manager en DITEC. Especialista en rentabilidad y automatización.";
-                } 
-                // SUELDO
-                else if (msg.includes("sueldo") || msg.includes("salario")) {
-                    response = "Mi rango salarial objetivo es de $45,000 a $50,000 MXN netos, negociable según prestaciones.";
-                } 
-                // CONTACTO
-                else if (msg.includes("contacto") || msg.includes("correo") || msg.includes("cita") || msg.includes("agendar") || msg.includes("whatsapp")) {
-                    response = "Puedes contactarme por correo, WhatsApp o agendar una cita directa en mi Calendly usando los botones de abajo.";
-                } 
-                // SALUDO
-                else if (msg.includes("hola") || msg.includes("buenos")) {
-                    response = "¡Hola! Soy la IA de Carlos. Pregúntame sobre mi experiencia en Gestión, uso de IA, Datos o Software.";
+                let resp = "";
+                if (msg.includes("scrum") || msg.includes("master") || msg.includes("agile") || msg.includes("certificado")) {
+                    resp = "Sí, Carlos cuenta con una certificación profesional en **Scrum Master** vía Coursera. Domina el escalado Agile para maximizar la entrega de valor al negocio. <a href='https://www.coursera.org/account/accomplishments/specialization/NA33RME0O160' target='_blank' class='text-secondary font-bold underline'>Validar aquí</a>.";
+                } else if (msg.includes("experience") || msg.includes("trabajo") || msg.includes("experiencia") || msg.includes("trayectoria") || msg.includes("akha")) {
+                    resp = "Carlos suma 7+ años de trayectoria. Actualmente es **Gerente de PMO en Grupo AKHA**, donde lidera el Comité Mastermind y redujo la carga administrativa en un 40% mediante automatización.";
+                } else if (msg.includes("stack") || msg.includes("herramientas") || msg.includes("python") || msg.includes("bi")) {
+                    resp = "Su stack está diseñado para el valor: utiliza **Jira** para gestión, **Python** para automatización de tareas y **Power BI/Looker** para dashboards directivos.";
+                } else if (msg.includes("skills") || msg.includes("habilidades") || msg.includes("valor")) {
+                    resp = "Carlos ofrece habilidades de alto valor: Gestión de PMO (Accountability), Estrategia Corporativa alineada a ROI y Reingeniería de Procesos (BPM).";
+                } else if (msg.includes("formacion") || msg.includes("maestria")) {
+                    resp = "Es **Maestro en Dirección de Proyectos por la UNITEC** y Licenciado en Administración. También posee un HND de Michigan State University.";
+                } else if (msg.includes("contacto") || msg.includes("email") || msg.includes("whatsapp")) {
+                    resp = "Puedes contactar a Carlos vía WhatsApp al **+52 667 200 5343** o al correo **carlozbarr@gmail.com**.";
                 } else {
-                    response = "Interesante pregunta. Mi enfoque principal es resolver problemas complejos mediante procesos y tecnología. ¿Te gustaría saber sobre mi experiencia en Gestión, Data o mis habilidades con IA?";
+                    resp = "Carlos Barrientos destaca por ser un perfil híbrido (PMO Estratégico + Automatización técnica). ¿Deseas saber más sobre su impacto en rentabilidad?";
                 }
 
-                chatBox.innerHTML += `
-                    <div class="chat-message flex items-start gap-3">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-robot text-white text-xs"></i>
-                        </div>
-                        <div class="bg-slate-700 text-slate-200 p-3 rounded-2xl rounded-tl-none text-sm max-w-[90%]">
-                            ${response}
+                chatWindow.innerHTML += `
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 gradient-bg rounded-lg shrink-0 flex items-center justify-center text-white text-[10px] shadow-sm font-bold">AI</div>
+                        <div class="bg-indigo-500/10 p-4 rounded-2xl rounded-tl-none border border-indigo-500/20 text-slate-300 max-w-[80%] shadow-sm leading-relaxed text-left">
+                            ${resp}
                         </div>
                     </div>
                 `;
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }, 800); 
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }, 600);
         }
-
-        // Animación al hacer scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); 
-                }
-            });
-        });
-        document.querySelectorAll('.fade-in-section').forEach((section) => observer.observe(section));
     </script>
 </body>
 </html>
